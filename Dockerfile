@@ -16,9 +16,17 @@ RUN npm run build
 #############
 #### Run ####
 #############
-FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
-COPY --from=build /app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+FROM node:14.17.0
+
+ENV ASSETDIR /usr/src/app
+
+RUN mkdir -p ${ASSETDIR} && chown node:node ${ASSETDIR}
+WORKDIR ${ASSETDIR}
+
+RUN npm install --unsafe-perm -g local-web-server
+
+COPY --from=build /app/ng-app/dist ${ASSETDIR}
 
 EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
+
+CMD ["ws", "-p", "8080", "--spa", "index.html", "--spa.asset-test-fs"]
