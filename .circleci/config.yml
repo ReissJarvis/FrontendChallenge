@@ -28,8 +28,7 @@ jobs:
             echo ${GCP_PROJECT_KEY} | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
             echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
             echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
-            echo 'export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME' >> $BASH_ENV && source $BASH_ENV
-            docker build -t eu.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME -t us.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME:$TAG .
+            docker build -t eu.gcr.io/$GOOGLE_PROJECT_ID/client -t eu.gcr.io/$GOOGLE_PROJECT_ID/client:$TAG .
       - gcp-gcr/gcr-auth:
           gcloud-service-key: GOOGLE_CLOUD_KEYS
           google-project-id: GOOGLE_PROJECT_ID
@@ -40,7 +39,7 @@ jobs:
           image: $IMAGE_NAME
       - cloudrun/deploy:
           platform: "managed"
-          image: "eu.gcr.io/$GOOGLE_PROJECT_ID/$IMAGE_NAME"
+          image: "eu.gcr.io/$GOOGLE_PROJECT_ID/client"
           service-name: "orb-gcp-cloud-run"
           region: $GOOGLE_COMPUTE_ZONE
           unauthenticated: true
