@@ -31,10 +31,10 @@ jobs:
             docker build -t eu.gcr.io/frontend-challenge-319616/client -t eu.gcr.io/frontend-challenge-319616/client:$TAG .
       - gcp-gcr/gcr-auth:
           gcloud-service-key: GOOGLE_CLOUD_KEYS
-          google-project-id: "frontend-challenge-319616"
+          google-project-id: GOOGLE_PROJECT_ID
           google-compute-zone: GOOGLE_COMPUTE_ZONE
       - gcp-gcr/push-image:
-          google-project-id: "frontend-challenge-319616"
+          google-project-id: GOOGLE_PROJECT_ID
           registry-url: "eu.gcr.io"
           image: "client"
       - cloudrun/deploy:
