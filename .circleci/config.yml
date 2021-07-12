@@ -28,7 +28,7 @@ jobs:
             echo ${GCP_PROJECT_KEY} | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
             echo 'export GOOGLE_CLOUD_KEYS=$(cat $HOME/gcloud-service-key.json)' >> $BASH_ENV
             echo 'export TAG=${CIRCLE_SHA1}' >> $BASH_ENV
-            docker build -t eu.gcr.io/$(GOOGLE_PROJECT_ID)/client -t eu.gcr.io/$(GOOGLE_PROJECT_ID)/client:$(TAG) .
+            docker build -t eu.gcr.io/$GOOGLE_PROJECT_ID/client -t eu.gcr.io/$GOOGLE_PROJECT_ID/client:$TAG .
       - gcp-gcr/gcr-auth:
           gcloud-service-key: GOOGLE_CLOUD_KEYS
           google-project-id: GOOGLE_PROJECT_ID
