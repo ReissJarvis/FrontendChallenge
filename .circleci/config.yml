@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  gcp-gcr: circleci/gcp-gcr@0.6.1
+  gcp-gcr: circleci/gcp-gcr@0.13.0
   cloudrun: circleci/gcp-cloud-run@1.0.0
 jobs:
   build-and-test:
@@ -23,7 +23,7 @@ jobs:
           docker_layer_caching: false
           version: 19.03.13
       - run:
-          name: Docker Build and Push
+          name: Docker Build
           command: |
             echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV
             echo ${GCP_PROJECT_KEY} | base64 --decode --ignore-garbage > $HOME/gcloud-service-key.json
