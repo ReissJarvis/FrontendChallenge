@@ -29,4 +29,4 @@ COPY --from=build /app/build ${ASSETDIR}
 
 EXPOSE 8080
 
-CMD ["ws", "-p", "8080", "--spa", "index.html", "--spa.asset-test-fs"]
+CMD ["ws", "--https", "-p", "8080", "--spa", "index.html", "--spa.asset-test-fs"]
