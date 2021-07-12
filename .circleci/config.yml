@@ -36,7 +36,7 @@ jobs:
       - gcp-gcr/push-image:
           google-project-id: GOOGLE_PROJECT_ID
           registry-url: "eu.gcr.io"
-          image: $IMAGE_NAME
+          image: "client"
       - cloudrun/deploy:
           platform: "managed"
           image: "eu.gcr.io/$GOOGLE_PROJECT_ID/client"
