@@ -20,12 +20,12 @@ FROM node:14.17.0
 
 ENV ASSETDIR /usr/src/app
 
-RUN mkdir -p ${ASSETDIR} && chown node:node ${ASSETDIR}
+RUN mkdir -p ${ASSETDIR}
 WORKDIR ${ASSETDIR}
 
 RUN npm install --unsafe-perm -g local-web-server
 
-COPY --from=build /app/ng-app/dist ${ASSETDIR}
+COPY --from=build /app/build ${ASSETDIR}
 
 EXPOSE 8080
 
