@@ -1,29 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import { FilterContainer } from './components/filter-container/filter-container';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+   <div className="app-container">
+     <div className="title-bar">
+       <h1 className="title is-1">Workout.</h1>
+     </div>
+     <div className="content-container">
+         <FilterContainer/>
 
-        <button className="button is-danger is-outlined">
-          Hello
-        </button>
-      </header>
-    </div>
+       <div className="card">
+         <div className="workout-image">
+           <img/>
+         </div>
+         <div className="title">
+            Armbar
+         </div>
+       </div>
+     </div>
+   </div>
   );
 }
 

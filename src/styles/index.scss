@@ -1,4 +1,20 @@
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
+@import "~bulma/sass/helpers/color";
 @import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/components/dropdown";
 @import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/elements/title";
+@import "~bulma/sass/grid/columns";
+@import "~bulma/sass/elements/form";
+
+
+.title-bar {
+  padding: 30px 50px
+}
+
+.filter-container {
+  padding: 20px 50px;
+  display: flex;
+  gap: 20px;
+}
