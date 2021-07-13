@@ -1,1 +1,1 @@
-export class WorkoutApiService
+export class WorkoutApiService {}
