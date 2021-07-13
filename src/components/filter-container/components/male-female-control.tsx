@@ -1,5 +1,5 @@
 import { FC, MouseEvent, useCallback } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface MaleFemaleControl {
     gender?: string
@@ -17,13 +17,13 @@ export const MaleFemaleControl: FC<MaleFemaleControl> = ({ gender, onChange }) =
         <div className="buttons has-addons">
             <button className={`button ${ gender === 'male' ? 'is-selected is-dark' : 'is-light'}`} value="male" onClick={handleOnClick}>
                 <span className="icon is-small">
-                    <FontAwesomeIcon icon="male"/>
+                    {/*<FontAwesomeIcon icon="male"/>*/}
                 </span>
                 <span>Male</span>
             </button>
             <button className={`button ${ gender === 'female' ? 'is-selected is-dark' : 'is-light'}`} value="female" onClick={handleOnClick}>
                 <span className="icon is-small">
-                    <FontAwesomeIcon icon="female"/>
+                    {/*<FontAwesomeIcon icon="female"/>*/}
                 </span>
                 <span>Female</span>
             </button>
