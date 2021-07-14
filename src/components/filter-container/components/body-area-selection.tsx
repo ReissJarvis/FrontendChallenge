@@ -14,6 +14,7 @@ export enum BodyAreaActionType {
     AddBodyArea,
     RemoveBodyArea,
     ToggleMenu,
+    BulkAdd
 }
 
 export interface AddBodyArea {
@@ -30,7 +31,12 @@ export interface ToggleMenu {
     type: BodyAreaActionType.ToggleMenu
 }
 
-export type GameActions = AddBodyArea | RemoveBodyArea | ToggleMenu
+export interface BulkAdd {
+    type: BodyAreaActionType.BulkAdd
+    bodyAreas: string[]
+}
+
+export type GameActions = AddBodyArea | RemoveBodyArea | ToggleMenu | BulkAdd
 
 export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onChange }) => {
 
@@ -42,16 +48,24 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
                 return { ...state, items: [...state.items.filter(i => i !== action.payload)] }
             case BodyAreaActionType.ToggleMenu:
                 return { ...state, show: !state.show }
+            case BodyAreaActionType.BulkAdd:
+                return { ...state, items: [ ...state.items, ...action.bodyAreas ] }
             default:
                 throw new Error();
         }
     }, { items: [...bodyAreas], show: false});
 
     useEffect(() => {
-        console.log(state.items)
-
         onChange(state.items)
     }, [state.items, onChange]);
+
+    useEffect(() => {
+        dispatch({
+            type: BodyAreaActionType.BulkAdd,
+            bodyAreas: bodyAreas
+        })
+    }, [bodyAreas]);
+
 
     const handleOnClick = useCallback(() => {
         dispatch({ type: BodyAreaActionType.ToggleMenu })
@@ -86,7 +100,7 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
                         bodyAreas.map(ba =>
                             <div key={ba} className="dropdown-item">
                                 <label className="checkbox">
-                                    <input type="checkbox" value={ba} defaultChecked={state.items.includes(ba)} onClick={handleSelectItemOnClick}/>
+                                    <input type="checkbox" value={ba} defaultChecked={true} onClick={handleSelectItemOnClick}/>
                                     {ba}
                                 </label>
                             </div>

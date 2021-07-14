@@ -1,23 +1,24 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import { FilterContainer } from './components/filter-container/filter-container';
 import { WorkoutCard } from './components/workout-card';
 import { WorkoutApiService } from './services/workout-api.service';
-import { Workout } from './models/workout.model';
 import { LoadingIndicator } from './components/loading-indicator';
-import { MaleFemale } from './models';
-
+import { MaleFemale, Workout } from './models';
+import { ImageCache } from './services/image-cache.service';
 
 const workoutApiService = new WorkoutApiService()
 
 function App() {
-
     const [workouts, setWorkouts] = useState<Workout[]>([])
+    const [filteredWorkouts, setFilteredWorkouts] = useState<Workout[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const [isError, setIsError] = useState<boolean>(false)
     const [bodyAreas, setBodyAreas] = useState<string[]>([])
+    const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>([])
     const [gender, setGender] = useState<'male' | 'female'>('male')
+
+    const imgCache = new ImageCache()
 
     useEffect(() => {
         setLoading(true)
@@ -33,6 +34,7 @@ function App() {
                 setLoading(false)
                 setWorkouts(fetchedWorkouts.exercises)
                 setBodyAreas(bodyAreas)
+                setFilteredBodyAreas(bodyAreas)
             })
             .catch(err => {
                 setLoading(true)
@@ -43,11 +45,22 @@ function App() {
     const handleFilterChange = useCallback(
         (gender: MaleFemale, bodyAreas: string[]) => {
             setGender(gender)
-            setBodyAreas(bodyAreas)
+            setFilteredBodyAreas(bodyAreas)
         },
         [setGender, setBodyAreas],
     );
 
+    useEffect(() => {
+        const filteredWorkouts = workouts
+            .filter(wo =>
+                wo.bodyAreas.find(ba => filteredBodyAreas.includes(ba))
+            )
+        setFilteredWorkouts(filteredWorkouts)
+    }, [filteredBodyAreas, setFilteredWorkouts, workouts]);
+
+    useEffect(() => {
+        setFilteredWorkouts(workouts)
+    }, [workouts, setFilteredWorkouts]);
 
   return (
    <div className="app-container">
@@ -56,23 +69,25 @@ function App() {
      </div>
      <div className="content-container">
          <FilterContainer bodyAreas={bodyAreas} onChange={handleFilterChange}/>
+             <div className="workout-card-container">
 
-         <div className="workout-card-container">
-
-             { loading && <LoadingIndicator/>}
-             { !loading && isError && <div>
-               <div className="icon is-large">
-                 <i className="fas fa-sad-tear" aria-hidden="true"/>
-               </div>
-               Error Occurred fetching workouts
-             </div>}
-             {
-                 !loading && !isError && workouts.map(wo =>
-                     <WorkoutCard key={wo.id} workout={wo} gender={gender} className="card-list-max-width"/>
-                 )
-             }
-         </div>
-
+                 { loading && <LoadingIndicator/>}
+                 { !loading && isError && <div>
+                   <div className="icon is-large">
+                     <i className="fas fa-sad-tear" aria-hidden="true"/>
+                   </div>
+                   Error Occurred fetching workouts
+                 </div>}
+                 {
+                     !loading && !isError && filteredWorkouts.map(wo =>
+                         <WorkoutCard key={wo.id}
+                                      workout={wo}
+                                      gender={gender}
+                                      className="card-list-max-width"
+                                      imgCache={imgCache}/>
+                     )
+                 }
+             </div>
      </div>
    </div>
   );

@@ -1,8 +1,10 @@
 //BULMA IMPORTS
 @import "base/bulma";
+
 //COMPONENT IMPORTS
 @import "components/loading-message";
 @import "components/card";
+@import "components/loading-image";
 
 .title-bar {
   padding: 30px 50px

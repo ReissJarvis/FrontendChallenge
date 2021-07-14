@@ -8,6 +8,7 @@ export const LoadingIndicator: FC = () => {
         'Cleaning Down Equipment',
         'Stretching',
     ]
+
     const [message, setMessage] = useState(messages[Math.floor(Math.random()*messages.length)])
 
     useEffect(() => {
@@ -18,13 +19,13 @@ export const LoadingIndicator: FC = () => {
         return () => {
             clearInterval(intervalId)
         };
-    }, []);
+    }, [setMessage, messages]);
 
     return (
         <div className="loading-message-container container">
             <progress className="progress is-medium is-dark" max="100"/>
             <div className="loading-message">
-                {message}.....
+                {message}...
             </div>
         </div>
     )

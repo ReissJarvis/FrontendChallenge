@@ -13,8 +13,13 @@ export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, onChange}
     const [filteredBodyAreas, setBodyAreas] = useState(bodyAreas)
 
     useEffect(() => {
+        console.log(gender, filteredBodyAreas)
         onChange(gender, filteredBodyAreas)
     }, [gender, filteredBodyAreas, onChange]);
+
+    useEffect(() => {
+        setBodyAreas(bodyAreas)
+    }, [bodyAreas]);
 
     return (
         <div className="filter-container">
