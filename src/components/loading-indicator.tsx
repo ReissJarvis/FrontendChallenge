@@ -7,6 +7,8 @@ export const LoadingIndicator: FC = () => {
         'Waiting for Equipment Hogger',
         'Cleaning Down Equipment',
         'Stretching',
+        'Trying to Reserve Equipment',
+        'Asking How Many Reps They Have Left',
     ]
 
     const [message, setMessage] = useState(messages[Math.floor(Math.random()*messages.length)])

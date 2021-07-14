@@ -64,10 +64,10 @@ function App() {
 
   return (
    <div className="app-container">
-     <div className="title-bar">
+     <div className="section">
        <h1 className="title is-1">Workout.</h1>
      </div>
-     <div className="content-container">
+     <div className="section">
          <FilterContainer bodyAreas={bodyAreas} onChange={handleFilterChange}/>
              <div className="workout-card-container">
 
