@@ -4,7 +4,7 @@ export interface Workout {
     transcript: string
     male: WorkoutImage
     female: WorkoutImage
-
+    bodyAreas: string[]
 }
 
 export interface WorkoutImage {
