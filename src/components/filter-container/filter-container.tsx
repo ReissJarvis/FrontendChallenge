@@ -25,7 +25,9 @@ export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, onChange}
         <div className="filter-container">
             <MaleFemaleControl gender={gender} onChange={setGender}/>
 
-            <BodyAreaSelection bodyAreas={bodyAreas} onChange={setBodyAreas}/>
+            <div>
+                <BodyAreaSelection bodyAreas={bodyAreas} onChange={setBodyAreas}/>
+            </div>
         </div>
     )
 }
