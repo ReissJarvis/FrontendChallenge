@@ -1,14 +1,8 @@
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/base/_all.sass";
-@import "~bulma/sass/helpers/color";
-@import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/components/dropdown";
-@import "~bulma/sass/layout/section.sass";
-@import "~bulma/sass/elements/title";
-@import "~bulma/sass/grid/columns";
-@import "~bulma/sass/elements/form";
-@import "~bulma/sass/elements/tag";
-
+//BULMA IMPORTS
+@import "base/bulma";
+//COMPONENT IMPORTS
+@import "components/loading-message";
+@import "components/card";
 
 .title-bar {
   padding: 30px 50px
@@ -27,3 +21,5 @@
   flex-wrap: wrap;
   padding-left: 50px;
 }
+
+

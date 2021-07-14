@@ -1,0 +1,21 @@
+.loading-message-container {
+  min-width: $body-min-width;
+}
+
+.loading-message {
+  opacity: 0;
+  animation: opacityOn 3s normal forwards infinite;
+  text-align: center;
+}
+
+@keyframes opacityOn {
+  20% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

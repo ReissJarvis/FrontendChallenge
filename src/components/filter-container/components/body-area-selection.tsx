@@ -51,7 +51,7 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
         console.log(state.items)
 
         onChange(state.items)
-    }, [state.items]);
+    }, [state.items, onChange]);
 
     const handleOnClick = useCallback(() => {
         dispatch({ type: BodyAreaActionType.ToggleMenu })
