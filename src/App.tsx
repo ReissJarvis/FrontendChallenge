@@ -28,7 +28,21 @@ function App() {
      </div>
      <div className="content-container">
          <FilterContainer/>
-         <WorkoutCard workout={workoutTest} gender="male"/>
+
+         <div className="workout-card-container">
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+             <WorkoutCard workout={workoutTest} gender="female"/>
+         </div>
+
      </div>
    </div>
   );

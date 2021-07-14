@@ -11,7 +11,7 @@ export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender}) => {
         <div className="card">
             <div className="card-image">
                 <figure className="image is-4by3">
-                    <img src={workout[gender].image} width="400" alt={workout.name}/>
+                    <img src={workout[gender].image} width="300" alt={workout.name}/>
                 </figure>
             </div>
             <div className="card-content">
