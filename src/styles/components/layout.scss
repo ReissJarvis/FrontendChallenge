@@ -1,5 +1,7 @@
+@use "~bulma/sass/utilities/derived-variables";
+
 .is-page-title {
-  border-bottom: 5px solid black
+  border-bottom: 5px solid $grey-darker;
 }
 
 .content-section-override {
