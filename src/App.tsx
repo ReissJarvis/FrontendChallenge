@@ -8,6 +8,7 @@ import { MaleFemale, Workout } from './models';
 import { ImageCache } from './services/image-cache.service';
 
 const workoutApiService = new WorkoutApiService()
+const imgCache = new ImageCache()
 
 function App() {
     const [workouts, setWorkouts] = useState<Workout[]>([])
@@ -17,8 +18,6 @@ function App() {
     const [bodyAreas, setBodyAreas] = useState<string[]>([])
     const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>([])
     const [gender, setGender] = useState<'male' | 'female'>('male')
-
-    const imgCache = new ImageCache()
 
     useEffect(() => {
         setLoading(true)
@@ -67,17 +66,20 @@ function App() {
      <div className="section">
        <h1 className="title is-1 is-page-title">Workout.</h1>
      </div>
+   <div>
+
+       </div>
      <div className="section content-section-override">
          <FilterContainer bodyAreas={bodyAreas} onChange={handleFilterChange}/>
-             <div className="workout-card-container">
-
+             <div className="workout-card-container scroll-container">
                  { loading && <LoadingIndicator/>}
                  { !loading && isError && <div>
-                   <div className="icon">
-                     <i className="fas fa-sad-tear" aria-hidden="true"/>
-                   </div>
-                   Error Occurred fetching workouts
-                 </div>}
+                       <div className="icon">
+                         <i className="fas fa-sad-tear" aria-hidden="true"/>
+                       </div>
+                       Error Occurred fetching workouts
+                    </div>
+                 }
                  {
                      !loading && !isError && filteredWorkouts.map(wo =>
                          <WorkoutCard key={wo.id}
@@ -87,8 +89,9 @@ function App() {
                                       imgCache={imgCache}/>
                      )
                  }
-             </div>
-     </div>
+
+         </div>
+    </div>
    </div>
   );
 }

@@ -8,3 +8,7 @@
   padding-top: 0;
   padding-bottom: 0;
 }
+
+.scroll-container {
+  max-height: calc(100% - 200px)
+}
