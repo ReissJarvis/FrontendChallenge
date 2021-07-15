@@ -15,17 +15,17 @@ export const MaleFemaleControl: FC<MaleFemaleControlProps> = ({ gender, onChange
 
     return (
         <div className="buttons has-addons">
-            <button className={`button ${ gender === 'male' ? 'is-selected is-dark' : 'is-light'}`} value="male" onClick={handleOnClick}>
+            <button className={`button is-flex is-justify-content-center ${ gender === 'male' ? 'is-selected is-dark' : 'is-light'}`} value="male" onClick={handleOnClick}>
                 <span className="icon is-small">
                     <i className="fas fa-male" aria-hidden="true"/>
                 </span>
-                <span>Male</span>
+                <span className="is-hidden-mobile">Male</span>
             </button>
-            <button className={`button ${ gender === 'female' ? 'is-selected is-dark' : 'is-light'}`} value="female" onClick={handleOnClick}>
+            <button className={`button is-flex is-justify-content-center ${ gender === 'female' ? 'is-selected is-dark' : 'is-light'}`} value="female" onClick={handleOnClick}>
                 <span className="icon is-small">
                     <i className="fas fa-female" aria-hidden="true"/>
                 </span>
-                <span>Female</span>
+                <span className="is-hidden-mobile">Female</span>
             </button>
         </div>
     )

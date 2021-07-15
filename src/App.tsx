@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './App.scss';
 import { FilterContainer } from './components/filter-container/filter-container';
 import { WorkoutCard } from './components/workout-card';
@@ -65,15 +65,15 @@ function App() {
   return (
    <div className="app-container">
      <div className="section">
-       <h1 className="title is-1">Workout.</h1>
+       <h1 className="title is-1 is-page-title">Workout.</h1>
      </div>
-     <div className="section">
+     <div className="section content-section-override">
          <FilterContainer bodyAreas={bodyAreas} onChange={handleFilterChange}/>
              <div className="workout-card-container">
 
                  { loading && <LoadingIndicator/>}
                  { !loading && isError && <div>
-                   <div className="icon is-large">
+                   <div className="icon">
                      <i className="fas fa-sad-tear" aria-hidden="true"/>
                    </div>
                    Error Occurred fetching workouts

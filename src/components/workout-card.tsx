@@ -21,7 +21,7 @@ export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, 
                     </Suspense>
                 </figure>
             </div>
-            <div className="card-content">
+            <div className="card-content card-content-override">
                 <h1 className="title is-2-desktop-only is-3-mobile">{workout.name}</h1>
                 <div className="tags are-medium">
                     {

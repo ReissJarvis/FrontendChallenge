@@ -11,7 +11,7 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
 
     useEffect(() => {
         setFilteredBodyAreas(bodyAreas)
-    }, [bodyAreas, setFilteredBodyAreas]);
+    }, [bodyAreas]);
 
     useEffect(() => {
         onChange(filteredBodyAreas)
@@ -31,7 +31,7 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
             setFilteredBodyAreas((fbas) => fbas.filter(i => i !== value))
         }
 
-    }, [setFilteredBodyAreas])
+    }, [])
 
     return (
         <div className={`dropdown ${ show ? 'is-active' : ''}`}>

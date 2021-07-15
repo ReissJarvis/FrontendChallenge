@@ -5,10 +5,11 @@ import { MaleFemale } from '../../models';
 
 interface FilterContainerProps {
     bodyAreas: string[]
+    className?: string
     onChange: (gender: MaleFemale, bodyAreas: string[]) => void
 }
 
-export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, onChange}) => {
+export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, className, onChange}) => {
     const [gender, setGender] = useState<MaleFemale>('male')
     const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>(bodyAreas)
 
@@ -33,7 +34,7 @@ export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, onChange}
     )
 
     return (
-        <div className="filter-container">
+        <div className={`filter-container ${className || ''}`}>
             <MaleFemaleControl gender={gender} onChange={handleGenderChange}/>
 
             <div>

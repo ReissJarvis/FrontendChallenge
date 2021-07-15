@@ -5,6 +5,8 @@ export class WorkoutApiService {
 
     get(): Promise<WorkoutApiResponse> {
         return axios.get<WorkoutApiResponse>('https://private-922d75-recruitmenttechnicaltest.apiary-mock.com/customexercises/')
-            .then(result => result.data)
+            .then(result => {
+                return result.data
+            })
     }
 }
