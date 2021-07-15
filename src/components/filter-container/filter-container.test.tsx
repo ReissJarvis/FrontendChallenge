@@ -7,7 +7,7 @@ test('Filter Container should should send update filter state on gender change',
 
     const onChange = (gender: string, filteredBodyAreas: string[]) => {
         console.log(gender, filteredBodyAreas)
-        expect(gender).toBe('female')
+        expect(gender).toBe('male')
         done()
     }
 
@@ -15,5 +15,5 @@ test('Filter Container should should send update filter state on gender change',
         <FilterContainer bodyAreas={[]} onChange={onChange}/>
     )
 
-    screen.getByText('Female').click()
+    screen.getByText('Male').click()
 })
