@@ -1,17 +1,16 @@
 import React, { FC, useEffect, useState } from 'react';
-import { setInterval } from 'timers';
+
+const messages = [
+    'Racking Weights',
+    'Waiting for Equipment Hogger',
+    'Cleaning Down Equipment',
+    'Stretching',
+    'Trying to Reserve Equipment',
+    'Asking How Many Reps They Have Left',
+]
 
 export const LoadingIndicator: FC = () => {
-    const messages = [
-        'Racking Weights',
-        'Waiting for Equipment Hogger',
-        'Cleaning Down Equipment',
-        'Stretching',
-        'Trying to Reserve Equipment',
-        'Asking How Many Reps They Have Left',
-    ]
-
-    const [message, setMessage] = useState(messages[Math.floor(Math.random()*messages.length)])
+    const [message, setMessage] = useState(messages[Math.floor(Math.random() * messages.length)])
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -21,7 +20,7 @@ export const LoadingIndicator: FC = () => {
         return () => {
             clearInterval(intervalId)
         };
-    }, [setMessage, messages]);
+    }, [setMessage]);
 
     return (
         <div className="loading-message-container container">

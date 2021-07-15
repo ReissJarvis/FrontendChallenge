@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { MaleFemaleControl } from './components/male-female-control';
 import { BodyAreaSelection } from './components/body-area-selection';
 import { MaleFemale } from '../../models';
@@ -10,23 +10,34 @@ interface FilterContainerProps {
 
 export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, onChange}) => {
     const [gender, setGender] = useState<MaleFemale>('male')
-    const [filteredBodyAreas, setBodyAreas] = useState(bodyAreas)
+    const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>(bodyAreas)
 
     useEffect(() => {
-        console.log(gender, filteredBodyAreas)
-        onChange(gender, filteredBodyAreas)
-    }, [gender, filteredBodyAreas, onChange]);
-
-    useEffect(() => {
-        setBodyAreas(bodyAreas)
+        setFilteredBodyAreas(bodyAreas)
     }, [bodyAreas]);
+
+    const handleGenderChange = useCallback(
+        (gender: MaleFemale) => {
+            setGender(gender)
+            onChange(gender, filteredBodyAreas)
+        },
+        [filteredBodyAreas, onChange],
+    )
+
+    const handleBodyAreaChange = useCallback(
+        (filteredBodyAreas: string[]) => {
+            setFilteredBodyAreas(filteredBodyAreas)
+            onChange(gender, filteredBodyAreas)
+        },
+        [gender, onChange],
+    )
 
     return (
         <div className="filter-container">
-            <MaleFemaleControl gender={gender} onChange={setGender}/>
+            <MaleFemaleControl gender={gender} onChange={handleGenderChange}/>
 
             <div>
-                <BodyAreaSelection bodyAreas={bodyAreas} onChange={setBodyAreas}/>
+                <BodyAreaSelection bodyAreas={bodyAreas} onChange={handleBodyAreaChange}/>
             </div>
         </div>
     )

@@ -1,21 +1,36 @@
-import { render } from '@testing-library/react';
-import { ListContainer } from './list-container';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-test('renders ListContainer', () => {
-    const { container } = render(
-        <ListContainer>
-            <div className="item">item 1</div>
-            <div className="item">item 2</div>
-            <div className="item">item 3</div>
-        </ListContainer>
+import { WorkoutCard } from './workout-card';
+import { Workout } from '../models';
+import { ImageCache } from '../services/image-cache.service';
+
+jest.mock('../services/image-cache.service')
+
+const imageCacheMock = new ImageCache()
+
+test('renders workoutCard', () => {
+    const workout: Workout = {
+        id: '1',
+        name: 'Workout 1',
+        bodyAreas: ['Area 1', 'Area 2'],
+        female: {
+            image: 'img1'
+        },
+        male: {
+            image: 'img2'
+        },
+        transcript: ''
+    }
+
+    const {container} = render(
+        <WorkoutCard workout={workout} gender='female' imgCache={imageCacheMock}/>
     )
 
-    const listContainerElement = container.getElementsByClassName('tile')
-    expect(listContainerElement.length).toBe(1)
+    const workoutName = screen.getByText(workout.name)
+    expect(workoutName).toBeInTheDocument()
 
-    const containerItems = listContainerElement[0]?.getElementsByClassName('item')
+    const bodyAreas = container.getElementsByClassName('tags').item(0)
 
-    expect(containerItems !== undefined).toBe(true)
-    expect(containerItems?.length).toBe(3)
+    expect(bodyAreas?.children.length).toBe(2)
 })

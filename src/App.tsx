@@ -47,7 +47,7 @@ function App() {
             setGender(gender)
             setFilteredBodyAreas(bodyAreas)
         },
-        [setGender, setBodyAreas],
+        [setGender, setFilteredBodyAreas],
     );
 
     useEffect(() => {

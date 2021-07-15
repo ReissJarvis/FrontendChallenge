@@ -1,6 +1,7 @@
 import { FC, MouseEvent, useCallback } from 'react';
 import { MaleFemale } from '../../../models';
-interface MaleFemaleControlProps {
+
+export interface MaleFemaleControlProps {
     gender?: string
     onChange: (gender: MaleFemale) => void
 }

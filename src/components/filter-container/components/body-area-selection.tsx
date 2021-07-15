@@ -1,74 +1,24 @@
-import { FC, MouseEvent, useCallback, useEffect, useReducer } from 'react';
+import { FC, MouseEvent, useCallback, useEffect, useState } from 'react';
 
-interface BodyAreaSelectionProps {
+export interface BodyAreaSelectionProps {
     bodyAreas: string[]
     onChange: (selectedItems: string[]) => void
 }
 
-interface BodyAreaState {
-    items: string[]
-    show: boolean
-}
-
-export enum BodyAreaActionType {
-    AddBodyArea,
-    RemoveBodyArea,
-    ToggleMenu,
-    BulkAdd
-}
-
-export interface AddBodyArea {
-    type: BodyAreaActionType.AddBodyArea
-    payload: string
-}
-
-export interface RemoveBodyArea {
-    type: BodyAreaActionType.RemoveBodyArea
-    payload: string
-}
-
-export interface ToggleMenu {
-    type: BodyAreaActionType.ToggleMenu
-}
-
-export interface BulkAdd {
-    type: BodyAreaActionType.BulkAdd
-    bodyAreas: string[]
-}
-
-export type GameActions = AddBodyArea | RemoveBodyArea | ToggleMenu | BulkAdd
-
 export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onChange }) => {
-
-    const [state, dispatch] = useReducer((state: BodyAreaState, action: GameActions) => {
-        switch (action.type) {
-            case BodyAreaActionType.AddBodyArea:
-                return { ...state, items: [...state.items, action.payload]};
-            case BodyAreaActionType.RemoveBodyArea:
-                return { ...state, items: [...state.items.filter(i => i !== action.payload)] }
-            case BodyAreaActionType.ToggleMenu:
-                return { ...state, show: !state.show }
-            case BodyAreaActionType.BulkAdd:
-                return { ...state, items: [ ...state.items, ...action.bodyAreas ] }
-            default:
-                throw new Error();
-        }
-    }, { items: [...bodyAreas], show: false});
+    const [show, setShow] = useState(false);
+    const [filteredBodyAreas, setFilteredBodyAreas] = useState(bodyAreas);
 
     useEffect(() => {
-        onChange(state.items)
-    }, [state.items, onChange]);
+        setFilteredBodyAreas(bodyAreas)
+    }, [bodyAreas, setFilteredBodyAreas]);
 
     useEffect(() => {
-        dispatch({
-            type: BodyAreaActionType.BulkAdd,
-            bodyAreas: bodyAreas
-        })
-    }, [bodyAreas]);
-
+        onChange(filteredBodyAreas)
+    }, [filteredBodyAreas, onChange]);
 
     const handleOnClick = useCallback(() => {
-        dispatch({ type: BodyAreaActionType.ToggleMenu })
+        setShow((show) => !show)
     }, [])
 
     const handleSelectItemOnClick = useCallback((event: MouseEvent<HTMLInputElement>) => {
@@ -76,15 +26,15 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
         const value = event.currentTarget.value
 
         if (isChecked) {
-            dispatch({ type: BodyAreaActionType.AddBodyArea, payload: value })
+            setFilteredBodyAreas((fbas) => [...fbas, value])
         } else {
-            dispatch({ type: BodyAreaActionType.RemoveBodyArea, payload: value})
+            setFilteredBodyAreas((fbas) => fbas.filter(i => i !== value))
         }
 
-    }, [])
+    }, [setFilteredBodyAreas])
 
     return (
-        <div className={`dropdown ${ state.show ? 'is-active' : ''}`}>
+        <div className={`dropdown ${ show ? 'is-active' : ''}`}>
             <div className="dropdown-trigger">
                 <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={handleOnClick}>
                     <span>Body Areas</span>
@@ -99,10 +49,8 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
                     {
                         bodyAreas.map(ba =>
                             <div key={ba} className="dropdown-item">
-                                <label className="checkbox">
-                                    <input type="checkbox" value={ba} defaultChecked={true} onClick={handleSelectItemOnClick}/>
-                                    {ba}
-                                </label>
+                                <input type="checkbox" value={ba} defaultChecked={true} onClick={handleSelectItemOnClick}/>
+                                {ba}
                             </div>
                         )
                     }

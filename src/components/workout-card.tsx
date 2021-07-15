@@ -1,4 +1,4 @@
-import { Workout } from '../models/workout.model';
+import { Workout } from '../models';
 import React, { FC, Suspense } from 'react';
 import { CachedImg } from './cached-image';
 import { ImageCache } from '../services/image-cache.service';
@@ -16,11 +16,9 @@ export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, 
         <div className={`card ${className ? className : ''}`}>
             <div className="card-image">
                 <figure className="image is-4by3">
-                    {/*<Suspense fallback={<LoadingImage />}>*/}
-                    {/*    <CachedImg src={workout[gender].image} imgCache={imgCache} width="300" alt={workout.name}/>*/}
-                    {/*</Suspense>*/}
-
-                    <LoadingImage/>
+                    <Suspense fallback={<LoadingImage />}>
+                        <CachedImg src={workout[gender].image} imgCache={imgCache} width="300" alt={workout.name}/>
+                    </Suspense>
                 </figure>
             </div>
             <div className="card-content">
