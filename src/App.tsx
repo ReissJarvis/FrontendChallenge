@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.scss';
 import { FilterContainer } from './components/filter-container/filter-container';
 import { WorkoutCard } from './components/workout-card';
@@ -6,6 +6,7 @@ import { WorkoutApiService } from './services/workout-api.service';
 import { LoadingIndicator } from './components/loading-indicator';
 import { MaleFemale, Workout } from './models';
 import { ImageCache } from './services/image-cache.service';
+import { WorkoutModal } from './components/workout-modal';
 
 const workoutApiService = new WorkoutApiService()
 const imgCache = new ImageCache()
@@ -17,7 +18,8 @@ function App() {
     const [isError, setIsError] = useState<boolean>(false)
     const [bodyAreas, setBodyAreas] = useState<string[]>([])
     const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>([])
-    const [gender, setGender] = useState<'male' | 'female'>('male')
+    const [gender, setGender] = useState<MaleFemale>('male')
+    const [selectedWorkout, setSelectedWorkout] = useState<Workout | undefined>(undefined)
 
     useEffect(() => {
         setLoading(true)
@@ -61,14 +63,17 @@ function App() {
         setFilteredWorkouts(workouts)
     }, [workouts, setFilteredWorkouts]);
 
+    const handleWorkoutSelected = useCallback((workout?: Workout) => {
+        console.log("selected workout", workout)
+        setSelectedWorkout(workout)
+    },[]);
+
   return (
-   <div className="app-container">
+    <div className="app-container">
      <div className="section">
        <h1 className="title is-1 is-page-title">Workout.</h1>
      </div>
-   <div>
 
-       </div>
      <div className="section content-section-override">
          <FilterContainer bodyAreas={bodyAreas} onChange={handleFilterChange}/>
              <div className="workout-card-container scroll-container">
@@ -86,12 +91,21 @@ function App() {
                                       workout={wo}
                                       gender={gender}
                                       className="card-list-max-width"
-                                      imgCache={imgCache}/>
+                                      imgCache={imgCache}
+                                      onClick={handleWorkoutSelected}/>
                      )
                  }
 
          </div>
     </div>
+        {
+            selectedWorkout && <WorkoutModal
+              workout={selectedWorkout}
+              imgCache={imgCache}
+              gender={gender}
+              onClose={handleWorkoutSelected}
+            />
+        }
    </div>
   );
 }

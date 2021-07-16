@@ -1,5 +1,5 @@
 import { Workout } from '../models';
-import React, { FC, Suspense } from 'react';
+import React, { FC, Suspense, useCallback } from 'react';
 import { CachedImg } from './cached-image';
 import { ImageCache } from '../services/image-cache.service';
 import { LoadingImage } from './loading-image';
@@ -9,11 +9,21 @@ interface WorkoutCardProps {
     gender: 'male' | 'female'
     className?: string
     imgCache: ImageCache
+    onClick: (workout: Workout) => void
 }
 
-export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, imgCache}) => {
+export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, imgCache, onClick = () => {}}) => {
+
+    const handleOnClick = useCallback(
+        () => {
+
+            onClick(workout)
+        },
+        [workout, onClick],
+    )
+
     return (
-        <div className={`card ${className ? className : ''}`}>
+        <div className={`card ${className ? className : ''}`} onClick={handleOnClick}>
             <div className="card-image">
                 <figure className="image is-4by3">
                     <Suspense fallback={<LoadingImage />}>
