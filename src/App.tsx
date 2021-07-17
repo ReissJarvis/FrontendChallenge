@@ -64,7 +64,6 @@ function App() {
     }, [workouts, setFilteredWorkouts]);
 
     const handleWorkoutSelected = useCallback((workout?: Workout) => {
-        console.log("selected workout", workout)
         setSelectedWorkout(workout)
     },[]);
 

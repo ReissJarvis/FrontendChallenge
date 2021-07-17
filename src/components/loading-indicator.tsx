@@ -24,7 +24,7 @@ export const LoadingIndicator: FC = () => {
 
     return (
         <div className="loading-message-container container">
-            <progress className="progress is-medium is-dark" max="100"/>
+            <progress className="progress is-small is-dark" max="100"/>
             <div className="loading-message">
                 {message}...
             </div>

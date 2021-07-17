@@ -8,7 +8,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 RUN npm ci
-#RUN npm install react-scripts -g
+
 COPY . ./
 
 RUN npm run build

@@ -9,7 +9,7 @@ interface WorkoutCardProps {
     gender: 'male' | 'female'
     className?: string
     imgCache: ImageCache
-    onClick: (workout: Workout) => void
+    onClick?: (workout: Workout) => void
 }
 
 export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, imgCache, onClick = () => {}}) => {
