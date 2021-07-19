@@ -2,7 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { FilterContainer } from './filter-container';
 import { WorkoutCard } from './workout-card';
 import { ImageCache } from '../services';
-import { MaleFemale, Workout } from '../models';
+import { Gender, Workout } from '../models';
 import { WorkoutModal } from './workout-modal';
 
 export interface WorkoutListProps {
@@ -15,7 +15,7 @@ export const WorkoutList: FC<WorkoutListProps> = ({workouts, imgCache}) => {
     const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>([])
     const [filteredWorkouts, setFilteredWorkouts] = useState<Workout[]>(workouts)
     const [selectedWorkout, setSelectedWorkout] = useState<Workout | undefined>(undefined)
-    const [gender, setGender] = useState<MaleFemale>('male')
+    const [gender, setGender] = useState<Gender>('male')
 
     useEffect(() => {
         const bodyAreas = workouts
@@ -41,7 +41,7 @@ export const WorkoutList: FC<WorkoutListProps> = ({workouts, imgCache}) => {
     },[]);
 
     const handleFilterChange = useCallback(
-        (gender: MaleFemale, bodyAreas: string[]) => {
+        (gender: Gender, bodyAreas: string[]) => {
             setGender(gender)
             setFilteredBodyAreas(bodyAreas)
         },

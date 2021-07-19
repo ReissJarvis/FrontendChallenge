@@ -1,16 +1,16 @@
 import { FC, MouseEvent, useCallback } from 'react';
-import { MaleFemale } from '../../../models';
+import { Gender } from '../../../models';
 
 export interface MaleFemaleControlProps {
     gender?: string
-    onChange: (gender: MaleFemale) => void
+    onChange: (gender: Gender) => void
 }
 
 export const MaleFemaleControl: FC<MaleFemaleControlProps> = ({ gender, onChange }) => {
 
     const handleOnClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
         const buttonValue = event.currentTarget.value
-        onChange(buttonValue as MaleFemale)
+        onChange(buttonValue as Gender)
     }, [onChange])
 
     return (

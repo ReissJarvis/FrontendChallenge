@@ -1,4 +1,4 @@
-import { Workout } from '../models';
+import { Gender, Workout } from '../models';
 import React, { FC, Suspense, useCallback } from 'react';
 import { CachedImg } from './cached-image';
 import { ImageCache } from '../services';
@@ -6,7 +6,7 @@ import { LoadingImage } from './loading-image';
 
 interface WorkoutCardProps {
     workout: Workout
-    gender: 'male' | 'female'
+    gender: Gender
     className?: string
     imgCache?: ImageCache
     onClick?: (workout: Workout) => void

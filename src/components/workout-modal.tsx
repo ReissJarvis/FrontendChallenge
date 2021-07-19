@@ -1,7 +1,7 @@
 import React, { FC, Suspense, useCallback } from 'react';
 import parse from 'html-react-parser';
 
-import { MaleFemale, Workout } from '../models';
+import { Gender, Workout } from '../models';
 import { LoadingImage } from './loading-image';
 import { CachedImg } from './cached-image';
 import { ImageCache } from '../services';
@@ -9,7 +9,7 @@ import { ImageCache } from '../services';
 
 interface WorkoutModalProps {
     workout: Workout
-    gender: MaleFemale
+    gender: Gender
     imgCache?: ImageCache
     onClose?: () => void
 }
