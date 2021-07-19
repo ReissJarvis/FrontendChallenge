@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import { WorkoutCard } from './workout-card';
 import { Workout } from '../models';
 import { WorkoutModal } from './workout-modal';
 

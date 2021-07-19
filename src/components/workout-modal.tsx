@@ -1,9 +1,11 @@
-import React, { FC, Fragment, Suspense, useCallback } from 'react';
+import React, { FC, Suspense, useCallback } from 'react';
+import parse from 'html-react-parser';
+
 import { MaleFemale, Workout } from '../models';
 import { LoadingImage } from './loading-image';
 import { CachedImg } from './cached-image';
 import { ImageCache } from '../services/image-cache.service';
-import parse from 'html-react-parser'
+
 
 interface WorkoutModalProps {
     workout: Workout
@@ -12,7 +14,7 @@ interface WorkoutModalProps {
     onClose?: () => void
 }
 
-export const WorkoutModal: FC<WorkoutModalProps> = ({workout, gender, imgCache, onClose}) => {
+export const WorkoutModal: FC<WorkoutModalProps> = ({workout, gender, imgCache, onClose}: WorkoutModalProps) => {
 
     const handleOnClick = useCallback(() => {
         if (onClose) {

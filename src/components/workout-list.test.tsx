@@ -2,7 +2,6 @@ import { WorkoutList } from './workout-list';
 import { Workout } from '../models';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import { waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 
 
 let container: HTMLElement | null

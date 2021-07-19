@@ -1,19 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { FilterContainer } from './components/filter-container/filter-container';
-import { WorkoutCard } from './components/workout-card';
+import {  useEffect, useState } from 'react';
+
 import { WorkoutApiService } from './services/workout-api.service';
 import { LoadingIndicator } from './components/loading-indicator';
-import { MaleFemale, Workout } from './models';
+import { Workout } from './models';
 import { ImageCache } from './services/image-cache.service';
-import { WorkoutModal } from './components/workout-modal';
 import { WorkoutList } from './components/workout-list';
 
 const workoutApiService = new WorkoutApiService()
-// Improvement Provide this in a context element instead of passing it down the prop chain and then check if its on the context
+
+// Improvement: Provide this in a context element instead of passing it down the prop chain and then check if its on the context
 // if it is we use the cache, if not we ignore it on img elements
 const imgCache = new ImageCache()
 
-function App() {
+function App(): JSX.Element {
     const [workouts, setWorkouts] = useState<Workout[]>([])
 
     const [loading, setLoading] = useState<boolean>(false)
@@ -27,7 +26,7 @@ function App() {
                 setLoading(false)
                 setWorkouts(fetchedWorkouts.exercises)
             })
-            .catch(err => {
+            .catch(() => {
                 setLoading(false)
                 setIsError(true)
             })

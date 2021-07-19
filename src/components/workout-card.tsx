@@ -12,11 +12,10 @@ interface WorkoutCardProps {
     onClick?: (workout: Workout) => void
 }
 
-export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, imgCache, onClick = () => {}}) => {
+export const WorkoutCard: FC<WorkoutCardProps> = ({ workout, gender, className, imgCache, onClick = () => {}}: WorkoutCardProps) => {
 
     const handleOnClick = useCallback(
         () => {
-
             onClick(workout)
         },
         [workout, onClick],

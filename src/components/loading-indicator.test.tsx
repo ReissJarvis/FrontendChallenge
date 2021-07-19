@@ -26,13 +26,13 @@ test('LoadingIndicator updates message after interval', () => {
         )
     });
 
-    let previousMessage = container?.getElementsByClassName('loading-message').item(0)?.textContent
+    const previousMessage = container?.getElementsByClassName('loading-message').item(0)?.textContent
 
     act(() => {
         jest.advanceTimersByTime(3000)
     })
 
-    let currentMessage = container?.getElementsByClassName('loading-message').item(0)?.textContent
+    const currentMessage = container?.getElementsByClassName('loading-message').item(0)?.textContent
     expect(currentMessage).not.toBe(previousMessage)
 })
 

@@ -1,7 +1,7 @@
 export class ImageCache {
     private cache: { [src: string]: Promise<string | void> | boolean } = {}
 
-    read(src: string) {
+    read(src: string): boolean | Promise<string | void> {
         if (!this.cache[src]) {
             this.cache[src] = new Promise((resolve) => {
                 const img = new Image();
@@ -10,7 +10,7 @@ export class ImageCache {
                     resolve(this.cache[src]);
                 };
                 img.src = src;
-            }).then((img) => {
+            }).then(() => {
                 this.cache[src] = true;
             });
         }
