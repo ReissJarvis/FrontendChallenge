@@ -14,7 +14,7 @@ interface WorkoutModalProps {
     onClose?: () => void
 }
 
-export const WorkoutModal: FC<WorkoutModalProps> = ({workout, gender, imgCache, onClose}: WorkoutModalProps) => {
+export const WorkoutModal: FC<WorkoutModalProps> = ({workout, gender, imgCache, onClose}) => {
 
     const handleOnClick = useCallback(() => {
         if (onClose) {

@@ -10,7 +10,7 @@ export interface WorkoutListProps {
     workouts: Workout[]
 }
 
-export const WorkoutList: FC<WorkoutListProps> = ({workouts, imgCache}: WorkoutListProps) => {
+export const WorkoutList: FC<WorkoutListProps> = ({workouts, imgCache}) => {
     const [bodyAreas, setBodyAreas] = useState<string[]>([])
     const [filteredBodyAreas, setFilteredBodyAreas] = useState<string[]>([])
     const [filteredWorkouts, setFilteredWorkouts] = useState<Workout[]>(workouts)
