@@ -51,8 +51,10 @@ test('Should render WorkoutList', async () => {
     expect(cardArray).toHaveLength(2)
 
     await act(async () => {
-        const firstBodyAreaListItemCheckbox = container?.getElementsByTagName('input').item(3) as HTMLButtonElement
+        const firstBodyAreaListItemCheckbox = container?.getElementsByTagName('input').item(0) as HTMLButtonElement
+        const secondBodyAreaListItemCheckbox = container?.getElementsByTagName('input').item(1) as HTMLButtonElement
         firstBodyAreaListItemCheckbox.dispatchEvent(new MouseEvent('click', {bubbles: true}))
+        secondBodyAreaListItemCheckbox.dispatchEvent(new MouseEvent('click', {bubbles: true}))
     })
 
     const updatedCardArray = container?.getElementsByClassName('card')
