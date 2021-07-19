@@ -8,6 +8,17 @@
 
 ![](./media/Workout_Mobile.jpeg)
 
+### URL
+https://orb-gcp-cloud-run-uc2x5lyi5q-ey.a.run.app/
+# Introduction
+"Workout." is a React frontend based application to showcase my ability to:
+ * Build responsive web applications with the use of media queries. (Bulma has been used, but is explained why below.)
+ * Understand concepts of state management in react.
+ * Unit testing
+ * Understanding the role in which CI plays in the development ecosystem
+ * Containerise production web applications
+ * Setup cloud infrastructure to deploy to.
+
 ## Installation and Starting
 
 ### Dependencies
@@ -21,9 +32,15 @@
 
 ```npm test```
 
+## Trello
+To track the tasks that needed to be done, I used a Trello kanban board to keep track of what needed to be done
+
+![](./media/Workout_Trello.jpeg)
+
 ## CircleCI
 This project will CI into GCP when a commit goes to main. The ci config can be found at: `./circleci/config.yaml`
 
+![](./media/Workout_CircleCI.jpeg)
 
 ## GCP (Google Cloud Platform) - Cloud deployed
 
