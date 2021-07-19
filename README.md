@@ -1,20 +1,25 @@
 # Frontend Challenge
 [![CircleCI](https://circleci.com/gh/ReissJarvis/FrontendChallenge/tree/main.svg?style=svg)](https://circleci.com/gh/ReissJarvis/FrontendChallenge/tree/main)
 
+### Desktop
+![](./media/Workout_Desktop.jpeg)
+
+### Mobile
+
+![](./media/Workout_Mobile.jpeg)
+
 ## Installation and Starting
-Before starting: 
+
+### Dependencies
 
 ```npm install```
 
-Once dependencies have been installed:
-
+### Start
 ```npm start```
-
 
 ## Testing
 
 ```npm test```
-
 
 ## CircleCI
 This project will CI into GCP when a commit goes to main. The ci config can be found at: `./circleci/config.yaml`
@@ -30,4 +35,5 @@ The application is fully agnostic and only the CircleCI deployment will need to 
 ## Bulma CSS
 Used for Utility classes and quicker scaffolding of components
 
-Even though CSS Styling have been used for multi select and toggle, implementation has been all my own
+Even though CSS Styling have been used for multi-select and toggle components, implementation has been all my own.
+These components could be changed slightly to be more dynamic and be used as shared components.

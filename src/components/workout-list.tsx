@@ -60,7 +60,7 @@ export const WorkoutList: FC<WorkoutListProps> = ({workouts, imgCache}) => {
                                          gender={gender}
                                          className="card-list-max-width"
                                          imgCache={imgCache}
-                                         onClick={handleWorkoutSelected}/>
+                                         onClick={setSelectedWorkout}/>
                         )
                 }
             </div>

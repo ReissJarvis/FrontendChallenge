@@ -9,12 +9,16 @@ const messages = [
     'Asking How Many Reps They Have Left',
 ]
 
+function getMessage() {
+    return messages[Math.floor(Math.random() * messages.length)]
+}
+
 export const LoadingIndicator: FC = () => {
-    const [message, setMessage] = useState(messages[Math.floor(Math.random() * messages.length)])
+    const [message, setMessage] = useState(getMessage())
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setMessage(messages[Math.floor(Math.random() * messages.length)])
+            setMessage(getMessage())
         }, 3000)
 
         return () => {
