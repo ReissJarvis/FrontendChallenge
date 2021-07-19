@@ -34,26 +34,30 @@ export const BodyAreaSelection: FC<BodyAreaSelectionProps> = ({ bodyAreas, onCha
     }, [])
 
     return (
-        <div className={`dropdown ${ show ? 'is-active' : ''}`}>
-            <div className="dropdown-trigger">
-                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={handleOnClick}>
-                    <span>Body Areas</span>
-                    <span className="icon is-small">
+        <div className="dropdown-container">
+            <div className={`dropdown ${ show ? 'is-active' : ''}`}>
+                <div className="dropdown-trigger">
+                    <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={handleOnClick}>
+                        <span>Body Areas</span>
+                        <span className="icon is-small">
                         <i className="fas fa-angle-down" aria-hidden="true"/>
                     </span>
-                </button>
-            </div>
+                    </button>
+                </div>
 
-            <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                <div className="dropdown-content">
-                    {
-                        bodyAreas.map(ba =>
-                            <div key={ba} className="dropdown-item">
-                                <input type="checkbox" value={ba} defaultChecked={true} onClick={handleSelectItemOnClick}/>
-                                {ba}
-                            </div>
-                        )
-                    }
+                <div className="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div className="dropdown-content">
+                        {
+                            bodyAreas.map(ba =>
+                                <div key={ba} className="dropdown-item">
+                                    <label className="checkbox">
+                                        <input type="checkbox" value={ba} defaultChecked={true} onClick={handleSelectItemOnClick}/>
+                                        {ba}
+                                    </label>
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
         </div>

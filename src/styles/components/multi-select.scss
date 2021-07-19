@@ -1,5 +1,12 @@
 .dropdown-item {
-  > input[type='checkbox'] {
-    width: 100px
+  & input[type='checkbox'] {
+    margin-right: 10px;
+    margin-top: 2px;
+  }
+
+  & label[class='checkbox'] {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
   }
 }

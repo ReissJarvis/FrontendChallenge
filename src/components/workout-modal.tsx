@@ -8,7 +8,7 @@ import parse from 'html-react-parser'
 interface WorkoutModalProps {
     workout: Workout
     gender: MaleFemale
-    imgCache: ImageCache
+    imgCache?: ImageCache
     onClose?: () => void
 }
 
@@ -21,41 +21,35 @@ export const WorkoutModal: FC<WorkoutModalProps> = ({workout, gender, imgCache, 
 
     }, [onClose])
 
-
     return (
         <div className="modal is-active">
             <div className="modal-background" onClick={handleOnClick}/>
-            <div className="modal-content">
-
-                <div className="card">
-                    <div className="card-content">
-                        <div className="is-flex is-flex-wrap-wrap is-flex-direction-row">
-                            <figure className="image is-4by3">
-                                <Suspense fallback={<LoadingImage/>}>
-                                    <CachedImg src={workout[ gender ].image} imgCache={imgCache} width="300"
-                                               alt={workout.name}/>
-                                </Suspense>
-                            </figure>
-                            <div className="model content">
-                                <h1 className="title is-2-desktop-only is-3-mobile">{workout.name}</h1>
-                                <div className="tags are-medium">
-                                    {
-                                        workout.bodyAreas.map(ba =>
-                                            <span key={ba} className="tag">{ba}</span>
-                                        )
-                                    }
-                                </div>
-                                <Fragment>
-                                    {/*
+            <div className="modal-content box">
+                <div className="columns">
+                    <div className="column">
+                        <figure className="image is-4by3">
+                            <Suspense fallback={<LoadingImage/>}>
+                                <CachedImg src={workout[gender].image} imgCache={imgCache} width="300"
+                                           alt={workout.name}/>
+                            </Suspense>
+                        </figure>
+                    </div>
+                    <div className="column">
+                        <h1 className="title is-2-desktop-only is-3-mobile">{workout.name}</h1>
+                        <div className="tags are-medium">
+                            {
+                                workout.bodyAreas.map(ba =>
+                                    <span key={ba} className="tag">{ba}</span>
+                                )
+                            }
+                        </div>
+                        <div className="content instructions-override">
+                            {/*
                                 Ive used a package here to parse the HTML instead of using dangerouslySetInnerHTML
 
                                 this package also supports overriding elements to custom react components
                             */}
-                                    {parse(workout.transcript)}
-                                </Fragment>
-                            </div>
-                            <div>
-                            </div>
+                            {parse(workout.transcript)}
                         </div>
                     </div>
                 </div>

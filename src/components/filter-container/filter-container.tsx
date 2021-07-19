@@ -36,10 +36,7 @@ export const FilterContainer: FC<FilterContainerProps> = ({ bodyAreas, className
     return (
         <div className={`filter-container ${className || ''}`}>
             <MaleFemaleControl gender={gender} onChange={handleGenderChange}/>
-
-            <div>
-                <BodyAreaSelection bodyAreas={bodyAreas} onChange={handleBodyAreaChange}/>
-            </div>
+            <BodyAreaSelection bodyAreas={bodyAreas} onChange={handleBodyAreaChange}/>
         </div>
     )
 }

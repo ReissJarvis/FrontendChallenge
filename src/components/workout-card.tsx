@@ -8,7 +8,7 @@ interface WorkoutCardProps {
     workout: Workout
     gender: 'male' | 'female'
     className?: string
-    imgCache: ImageCache
+    imgCache?: ImageCache
     onClick?: (workout: Workout) => void
 }
 
