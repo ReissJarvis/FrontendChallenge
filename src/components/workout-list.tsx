@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { FilterContainer } from './filter-container/filter-container';
+import { FilterContainer } from './filter-container';
 import { WorkoutCard } from './workout-card';
-import { ImageCache } from '../services/image-cache.service';
+import { ImageCache } from '../services';
 import { MaleFemale, Workout } from '../models';
 import { WorkoutModal } from './workout-modal';
 

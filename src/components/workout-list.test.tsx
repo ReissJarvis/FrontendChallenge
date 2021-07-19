@@ -3,7 +3,6 @@ import { Workout } from '../models';
 import { render } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 
-
 let container: HTMLElement | null
 beforeEach(() => {
     container = document.createElement('div');

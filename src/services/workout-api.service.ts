@@ -1,4 +1,4 @@
-import { WorkoutApiResponse } from '../models/workout-api-response.model';
+import { WorkoutApiResponse } from '../models';
 import axios from 'axios';
 
 export class WorkoutApiService {

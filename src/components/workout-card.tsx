@@ -1,7 +1,7 @@
 import { Workout } from '../models';
 import React, { FC, Suspense, useCallback } from 'react';
 import { CachedImg } from './cached-image';
-import { ImageCache } from '../services/image-cache.service';
+import { ImageCache } from '../services';
 import { LoadingImage } from './loading-image';
 
 interface WorkoutCardProps {

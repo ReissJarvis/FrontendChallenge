@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { MaleFemaleControl } from './components/male-female-control';
-import { BodyAreaSelection } from './components/body-area-selection';
+import { MaleFemaleControl, BodyAreaSelection } from './components';
 import { MaleFemale } from '../../models';
 
 interface FilterContainerProps {

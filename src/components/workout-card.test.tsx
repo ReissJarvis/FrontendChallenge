@@ -3,7 +3,7 @@ import React from 'react';
 
 import { WorkoutCard } from './workout-card';
 import { Workout } from '../models';
-import { ImageCache } from '../services/image-cache.service';
+import { ImageCache } from '../services';
 
 jest.mock('../services/image-cache.service')
 

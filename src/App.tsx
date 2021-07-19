@@ -1,10 +1,8 @@
 import {  useEffect, useState } from 'react';
 
-import { WorkoutApiService } from './services/workout-api.service';
-import { LoadingIndicator } from './components/loading-indicator';
+import { WorkoutApiService, ImageCache } from './services';
+import { LoadingIndicator, WorkoutList } from './components';
 import { Workout } from './models';
-import { ImageCache } from './services/image-cache.service';
-import { WorkoutList } from './components/workout-list';
 
 const workoutApiService = new WorkoutApiService()
 

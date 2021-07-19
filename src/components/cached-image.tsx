@@ -1,5 +1,5 @@
 import { FC, ImgHTMLAttributes } from 'react';
-import { ImageCache } from '../services/image-cache.service';
+import { ImageCache } from '../services';
 
 interface CachedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     src: string
